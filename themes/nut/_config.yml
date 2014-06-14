@@ -1,0 +1,71 @@
+# Header
+menu:
+- name: Archives
+  path: /archives
+  logo: archive
+- name: Categories
+  path: /categories
+  logo: folder
+- name: Tags
+  path: /tags
+  logo: tags
+- name: About
+  path: /about
+  logo: user
+#- name: Wiki
+#  path: /wiki
+#  logo: book
+
+rss: /atom.xml
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+pages:
+- about
+#- wiki
+
+#wiki_dir: wiki
+#wiki_info:
+
+# Sidebar
+sidebar: right
+home_widgets:
+- search
+- category
+- tag
+- archive
+- blogroll
+- weiboxiu
+act_widgets:
+- search
+- recent_posts
+- blogroll
+post_widgets:
+- nav
+- post_date
+- post_category
+- post_tag
+
+# Miscellaneous
+google_analytics: UA-51886409-1
+favicon: /favicon.ico
+twitter: https://twitter.com/Andimeo
+google_plus: https://plus.google.com/108731813092358327718/posts
+
+links:
+- name: 皮皮书屋
+  url: http://ppurl.com
+  logo: 
+- name: Matrix67
+  url: http://www.matrix67.com/blog/
+  logo: 
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+sitemap:
+  path: sitemap.xml
