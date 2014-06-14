@@ -12,6 +12,7 @@ menu:
 - name: About
   path: /about
   logo: user
+
 #- name: Wiki
 #  path: /wiki
 #  logo: book
