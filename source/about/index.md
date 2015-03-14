@@ -24,7 +24,8 @@ Andimeo就是我，蓝色星空和北大未名都有我的足迹。不高山上�
 ### Life Journey
 时间 | 事件 
 -----|-----
-201309 ~ now | MicroStrategy Inc.
+201501 ~ now | Tango Me.
+201309 ~ 201412 | MicroStrategy Inc.
 201009 ~ 201307 | 北京大学
 200609 ~ 201007 | 四川大学
 198805 | 呱呱坠地 
