@@ -24,16 +24,20 @@ C++和Java中都学习过泛型，可是从来觉得写T就跟写for循环中的
 
 ## The Diamond
 在Java 7及以后的版本中，当调用泛型类的构造函数时，可以省去类型参数，只使用一组空的尖括号，只要在编译期类型可以被编译器确定或者推导出来。这对尖括号，就叫作diamond。比如我们可以像如下这样声明一个链表：
+
 ```
 List<String> list = new ArrayList<>();
 ```
+
 diamond在英文中可以指扑克牌中的方片，两个尖括号放在一起<>，的确像一个方片。
 
 ## Multiple Bounds
 `List<? extends A>` 和 `List<? super A>`代表类型为A的子类和A的父类的链表类型。这里的语法称为upper bound和lower bound。这些都是非常基础的知识了。但是类型参数可以有多个bounds，这样的写法并不常见。如:
+
 ```
 <T extends A & B & C>
 ```
+
 需要注意的是，如果A、B、C中有一个为类，其余为接口的话，类必须写到第一个的位置，否则会在编译时报错。
 
 ## Unbounded Wildcard
@@ -43,6 +47,7 @@ unbounded wildcard在两种情形下很有用：
 中的大部分方法都和T无关。
 
 考虑下面的方法：
+
 ```
 public static void printList(List<Object> list) {
     for (Object elem : list)
@@ -50,7 +55,9 @@ public static void printList(List<Object> list) {
     System.out.println();
 }
 ```
+
 printList的目的是打印任意类型的列表，但是上面的函数却做不到。它只能打印Object的List，无法打印`List<Integer>`，`List<String>`或`List<Double>`，因为它们都不是`List<Object>`的子类。为了写一个泛型的printList，需要使用`List<?>`：
+
 ```
 public static void printList(List<?> list) {
     for (Object elem: list)
@@ -58,6 +65,7 @@ public static void printList(List<?> list) {
     System.out.println();
 }
 ```
+
 因为对任何具体类型`A`，`List<A>`是`List<?>`的子类。
 
 需要特别注意的是，`List<Object>`和`List<?>`是不一样的。你可以往`List<Object>`插入`Object`和其他Object的子类。但是你只能往`List<?>`中插入`null`。
@@ -95,17 +103,20 @@ Wildcard Guidelines：
 因为所有类的实例都共同拥有static成员，但是可以创建和类的类型参数不同的泛型static函数
 
 **不能创建参数类型的数组**
+
 ```
 Object[] stringLists = new List<String>[];  // compiler error, but pretend it's allowed
 stringLists[0] = new ArrayList<String>();   // OK
 stringLists[1] = new ArrayList<Integer>();  // An ArrayStoreException should be thrown,
                                             // but the runtime can't detect it.
 ```
+
 如果允许创建类型参数的数组，上面的代码将会抛出`ArrayStoreException`
 
 **不能创建，catch或throw参数类型的对象**
 
 泛型类不能直接或间接继承`Throwable`。
+
 ```
 // Extends Throwable indirectly
 class MathException<T> extends Exception { /** ... **/ }    // compile-time error
@@ -113,7 +124,9 @@ class MathException<T> extends Exception { /** ... **/ }    // compile-time erro
 // Extends Throwable directly
 class QueueFullException<T> extends Throwable { /** ... **/ // compile-time error
 ```
+
 一个方法不能catch类型参数的实例
+
 ```
 public static <T extends Exception, J> void execute(List<J> jobs) {
     try {
@@ -124,7 +137,9 @@ public static <T extends Exception, J> void execute(List<J> jobs) {
     }
 }
 ```
+
 然而，可以在`throws`子句中使用类型参数
+
 ```
 class Parser<T extends Exception> {
     public void parse(File file) throws T {     // OK
@@ -132,7 +147,9 @@ class Parser<T extends Exception> {
     }
 }
 ```
+
 **不能拥有在Type Erasure之后签名一样的重载函数**
+
 ```
 public class Example {
     public void print(Set<String> strSet) { }
