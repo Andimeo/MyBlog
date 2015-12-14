@@ -104,7 +104,7 @@ Rank 3 | C | A | B
 IIA指出，对于这两种对a和b的排序，我们同等对待。我们能考虑的就是a>b而已。  
 假设了IIA，我们就排除了所有基于基数的投票方法。这使得这个过程变得难以执行。
 
-#简短证明
+# 简短证明
 [证明原文](http://www.socialchoiceandbeyond.com/scabpage36.html)
 
 假设有m个选项，n个投票者。每个投票者根据自己的喜好对m个选项排序。社会福利函数(Social Welfare Function，SWF)会把这些数据转化为一个有序列表作为最终结果。

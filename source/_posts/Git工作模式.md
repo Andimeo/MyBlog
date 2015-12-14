@@ -21,11 +21,11 @@ A typical distributed workflow using Git is for a contributor to fork a project,
 <!-- more -->
 [Git Workflows](https://www.atlassian.com/git/workflows)
 
-#Overview
+# Overview
 由于不知道Git可能的工作模式，刚刚在工作中接触Git的人可能会感到有些困难。本文描述了最常见的几种Git工作模式，希望以此作为新人探索Git世界的一个起点。
 
 当你在阅读本文的时候，这些工作模式只是一些指导意见，而不是不可违背的规则。我们希望通过告诉你什么是可能的，让你能够根据个人的需求混合、订制自己的工作模式。
-#Centralized Workflow
+# Centralized Workflow
 转到一个分布式的版本控制系统看起来是一个令人畏惧的任务，但是你并不必改变现有的工作模式就可以享受Git带来的好处。你的团队可以按照与svn一样的模式进行工作。
 
 {% img /img/central1.png %}
@@ -34,7 +34,7 @@ A typical distributed workflow using Git is for a contributor to fork a project,
 
 第二，Git提供了健壮的分支和合并模型。与svn不同，Git的分支为集成代码和分享改动采用了一种fail-safe的机制。
 
-##How it works
+## How it works
 就像Subversion一样，Centralized-workflow使用一个中央仓库作为代码提交的唯一入口。Svn中使用trunk，而Git中默认的开发分支叫作mster，所有的改动都会提交到这个分支。这种工作模式master以外的其他任何分支。
 
 {% img /img/central2.png %}
@@ -53,7 +53,7 @@ A typical distributed workflow using Git is for a contributor to fork a project,
 
 如果本地改动和上游的提交直接产生了冲突，Git将会暂停并让你手动的解决这些冲突。Git的好处之一是它使用了git status和git add同时用于生成提交和解决合并冲突。这使得新开发者更容易管理自己的合并。而且，如果他们陷入了麻烦，git就会停止合并过程，让开发者重试或者寻求帮助。
 
-##Example
+## Example
 让我们来一步一步的看看一个典型的小团队如何在这种模式下合作。我们将会看到两个开发者，John和Mary，通过一个中央仓库，分别进行两个feature的开发并且分享他们的贡献。
 
 ** Someone initializes the central repository **
@@ -140,7 +140,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Mary可以使用git pull将上游的提交混合到本地。这个命令有点像svn update，它把上游的提交历史取到本地，并试图和本地的修改合并。
 
 ```
-git pull --rebase origin master 
+git pull --rebase origin master
 ```
 
 选项--rebase告诉Git在同步了中央仓库的改动之后，把Mary的改动移到master分支的顶部。如下图所示，
@@ -176,7 +176,7 @@ Git的一个伟大之处在于，任何人都可以解决他们自己的合并�
 然后，她就可以把文件修改成自己需要的样子。一旦她修改完毕，她就可以将文件置入工作区，让git rebase继续做剩下的事情，
 
 ```
-git add <some-file> 
+git add <some-file>
 git rebase --continue
 ```
 
@@ -198,7 +198,7 @@ git rebase --abort
 git push origin master
 ```
 
-#Feature Branch Workflow
+# Feature Branch Workflow
 {% img /img/feature1.png %}
 
 一旦你熟悉了Centralized Workflow，在你的开发过程中加入feature分支成了一种简单的促进开发者协作的方法。
@@ -207,7 +207,7 @@ Feature Branch Workflow的核心想法在于所有feature都应该在自己的�
 
 这种对feature开发的封装，也使得我们可以在开发中利用pull requests，这是一种发起关于某个分支的讨论的方法。这给了其他开发者一个在代码被合并到主项目之前审查某个feature的机会。或者，当你卡在某个feature开发中时，你可以发起一个pull request向你的同事征求意见。总而言之，pull requests以一种非常简单的方式为你的团队提供了评论彼此工作的条件。
 
-##How it works
+## How it works
 Feature Branch Workflow仍然使用中央仓库，master分支仍然代表官方工程的历史。但是，并不是直接提交到本地的master分支，开发者每次开始一个新feature时，首先需要创建一个新的分支。Feature分支应该有描述性的名称，比如animated-menu-items或者issue-#1061.这是为了给每个分支提供一个清晰、明确的目的。
 
 Git对于master分支和feature分支没有本质上的区分，所以开发者可以edit、stage并且commit改动到feature分支，就和在Centralized Workflow中一样。
@@ -224,7 +224,7 @@ Git对于master分支和feature分支没有本质上的区分，所以开发者�
 
 一些代码管理工具可以帮助我们处理pull requests，如Bitbucker或Stash。
 
-##Example
+## Example
 
 下面的例子将演示如何将pull requests作为代码审查的一种形式，但是切记它还可以用于很多其他的目的。
 
@@ -303,7 +303,7 @@ git push
 
 当Mary和Bill开发marys-feature，在Mary的pull request中讨论时，John也在做同样的事情。通过隔离feature到不同的分支，所有人都可以独立的工作，如果必要和其他开发者共享代码改动也是很轻松的事情。
 
-#Gitflow Workflow
+# Gitflow Workflow
 
 {% img /img/gitflow1.png %}
 
@@ -313,7 +313,7 @@ Gitflow Workflow定义了一个用于工程发布的严格的分支模型。比�
 
 这种工作模式在Feature Branch Workflow的基础上没有增加新的概念或者命令。它只是为不同的分支定义了明确的角色，并且定义它们之间何时以及如何交互。与Feature Branch Workflow相比，它为准备、维护、发布定义了自己的分支。当然，你也可以享受到所有Feature Branch Workflow拥有的好处：pull requests，隔离环境，和更加有效的协作。
 
-##How it works
+## How it works
 Gitflow Workflow仍然使用一个中央仓库。与其他工作模式相同，开发者可以在本地工作，然后再将分支push到中央仓库中。唯一的不同在于工程的分支结构。
 
 ** Historical Branches **
@@ -347,7 +347,7 @@ Maintenance或者说hotfix分支用来对生产环境的版本进行快速修复
 
 拥有一个特定的开发线路供修复bug使得你的团队可以在不干扰其他工作流程，也不用等待下个发布周期的前提下处理issue。你可以认为maintenance分支是一个直接和master分支交互的发布分支。
 
-##Example
+## Example
 
 下面的例子展示了这个工作模式如何处理一个发布周期。我们假设已经创建了一个中央仓库。
 
@@ -467,7 +467,7 @@ git push
 git branch -d issue-#001
 ```
 
-#Forking Workflow 
+# Forking Workflow
 
 Forking Workflow和本文中谈到的其他工作模式都不相同。它并不是只有一个单独的服务器端的仓库来扮演中央代码库，在这个模式中，每个开发者都有一个自己的服务器端的仓库。这意味着每一个贡献者都有两个Git的仓库，一个私有的本地的，一个共有的服务器端的。
 
@@ -477,7 +477,7 @@ Forking Workflow最大的好处在于不用所有人都push到一个中央仓库
 
 这就构成了一种分布式的工作模式。为大型团队安全的协作提供了一种灵活的方式。
 
-##How it works
+## How it works
 跟其他Git工作模式一样，Forking Workflow开始于服务器端的官方公开仓库。但是当一个新开发者想要在这个项目上工作时，他并不能呢个直接clone这个官方工程。
 
 他需要先fork这个官方工程，在服务器上创建一份自己的备份。这个新的备份就是它的个人公开仓库，其他开发者都不允许push到这个仓库，但是他们可以pull这个仓库的改动到自己的代码中。当他们创建自己服务器端的备份后，开发者执行git clone在本地建立一个备份。这就是他们私人的开发环境，就跟别的工作模式一样。
@@ -494,7 +494,7 @@ Forking Workflow最大的好处在于不用所有人都push到一个中央仓库
 
 所有这些个人的公共仓库只是一种方便共享分支给其他开发者的方式。所有人仍然应该使用分支来隔离不同的feature，就像Feature Branch Workflow和Gitflow Workflow一样。唯一的区别是这些分支如何共享。在Forking Workflow中，他们被pull到另一个开发者的本地仓库中，而Feature Branch Workflow和Gitflow Workflow则是push到官方仓库中。
 
-##Example
+## Example
 
 ** [github](https://github.com/) **
 
