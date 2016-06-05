@@ -92,5 +92,5 @@ Plugins:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: github
-  repository: https://gitcafe.com/Andimeo/Andimeo.git
-  branch: gitcafe-pages
+  repository: https://github.com/Andimeo/andimeo.github.io.git
+  branch: master
