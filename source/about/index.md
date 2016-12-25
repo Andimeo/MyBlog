@@ -9,7 +9,7 @@ Attitude is depending on one’s heart; the change of attitude will also include
 在顺境中感恩，在逆境中依旧心存安乐，认真活在当下。
 {% endblockquote %}
 
-###Who I am
+### Who I am
 
 > 做过ACM，没拿过名次；  
 > 参加过辩论队，口齿不太伶俐；  
@@ -22,13 +22,14 @@ Andimeo就是我，蓝色星空和北大未名都有我的足迹。不高山上�
 
 
 ### Life Journey
-时间 | 事件 
+时间 | 事件
 -----|-----
-201501 ~ now | Tango Me.
+201604 ~ now | Luminate Wireless
+201501 ~ 201603 | Tango Me
 201309 ~ 201412 | MicroStrategy Inc.
 201009 ~ 201307 | 北京大学
 200609 ~ 201007 | 四川大学
-198805 | 呱呱坠地 
+198805 | 呱呱坠地
 
 ### Contact Me
 <i class="fa fa-envelope"></i>: <andimeoltj@gmail.com>  
