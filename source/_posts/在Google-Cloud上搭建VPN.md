@@ -228,6 +228,8 @@ iptables -A INPUT -i $INF -p udp --dport 1701 -j ACCEPT
 iptables -A INPUT -i $INF -p tcp --dport 1723 -j ACCEPT
 iptables -A FORWARD -j REJECT
 iptables -t nat -A POSTROUTING -s 10.31.2.0/24 -o $INF -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.31.2.1/24 -o $INF -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.31.2.2/24 -o $INF -j MASQUERADE
 ```
 
 ## 保存iptables且开机自动启动
