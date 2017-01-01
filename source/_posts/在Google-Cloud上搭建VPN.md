@@ -196,7 +196,7 @@ charon {
 ```
 
 ## 配置ipsec.secrets
-将`/usr/loca/etc/ipsec/ipsec.secrets`内容替换为如下内容：
+将`/usr/loca/etc/ipsec.secrets`内容替换为如下内容：
 ```
 : RSA server.pem
 : PSK "mykey"
@@ -208,15 +208,17 @@ charon {
 # 配置iptables
 
 ## 修改sysctrl.conf
-打开`/etc/sysctrl.conf`，然后uncomment包含`net.ipv4.ip_forward=1`的这一行。
+打开`/etc/sysctl.conf`，然后uncomment包含`net.ipv4.ip_forward=1`的这一行。
 
-保存后，执行`sysctrl -p`。
+保存后，执行`sysctl -p`。
 
 ## 修改iptables
 将`INF`替换为自己的网络接口.
 ```
 INF="Your own network interface"
 iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -s 10.31.0.0/24  -j ACCEPT
+iptables -A FORWARD -s 10.31.1.0/24  -j ACCEPT
 iptables -A FORWARD -s 10.31.2.0/24  -j ACCEPT
 iptables -A INPUT -i $INF -p esp -j ACCEPT
 iptables -A INPUT -i $INF -p udp --dport 500 -j ACCEPT
